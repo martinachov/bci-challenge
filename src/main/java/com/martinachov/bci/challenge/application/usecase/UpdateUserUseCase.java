@@ -8,6 +8,7 @@ import com.martinachov.bci.challenge.application.port.output.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,6 +32,8 @@ public class UpdateUserUseCase implements UpdateUserInputPort {
 
         User updatedUser = user.get();
         updatedUser.setToken(token);
+        updatedUser.setLastLogin(LocalDateTime.now());
+
         userRepository.save(updatedUser);
 
     }

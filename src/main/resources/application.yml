@@ -18,3 +18,8 @@ application:
     jwt:
       secret-key: 482B4D6251655468576D5A7134743677397A24432646294A404E635266556A58
       expiration: 60000 # 1 minuto
+
+  validation:
+    regex:
+      email: ^(.+)@(\\S+)$
+      pass: ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$

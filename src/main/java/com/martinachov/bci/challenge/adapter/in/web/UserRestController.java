@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
@@ -39,7 +40,7 @@ public class UserRestController {
     }
 
     @PostMapping(value="/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RegistrationResponseDTO> registerUser(@RequestBody RegistrationRequestDTO request) throws BaseException {
+    public ResponseEntity<RegistrationResponseDTO> registerUser(@RequestBody @Valid RegistrationRequestDTO request) throws BaseException {
 
         UserRegistrationData userRegistrationData = mapper.map(request, UserRegistrationData.class);
         User userRegistered = signUpUserPort.signUp(userRegistrationData);

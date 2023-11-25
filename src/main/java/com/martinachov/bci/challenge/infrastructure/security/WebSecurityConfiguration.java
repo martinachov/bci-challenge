@@ -22,9 +22,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_WHITELIST = {
             "/api/user/register",
-            "/api/user/login",
-            "/api/user/update/**",
-            "/api/user/delete/**",
+            "/api/auth/**",
             "/h2-console/**"
     };
 

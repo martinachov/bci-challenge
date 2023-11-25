@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -18,6 +19,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @ControllerAdvice
 public class ErrorControllerAdvise extends ResponseEntityExceptionHandler {
@@ -63,5 +66,24 @@ public class ErrorControllerAdvise extends ResponseEntityExceptionHandler {
                 .build();
 
         return handleExceptionInternal(ex, error, headers, HttpStatus.UNAUTHORIZED, request);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        List<ErrorInfoDTO> errors = new ArrayList<>();
+        ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .forEach(e -> {
+                    ErrorInfoDTO error = ErrorInfoDTO.builder()
+                            .message(e.getDefaultMessage())
+                            .build();
+                    errors.add(error);
+                });
+
+        return handleExceptionInternal(ex, errors, headers, HttpStatus.BAD_REQUEST, request);
     }
 }

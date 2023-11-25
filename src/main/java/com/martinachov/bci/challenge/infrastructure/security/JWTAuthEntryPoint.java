@@ -30,8 +30,12 @@ public class JWTAuthEntryPoint implements AuthenticationEntryPoint, Serializable
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
+        StringBuilder error = new StringBuilder(authException.getMessage());
+
+        error.append(". Please check token validity and try again!!");
+
         final ErrorInfoDTO errorInfoDTO = ErrorInfoDTO.builder()
-                .message(authException.getMessage())
+                .message(error.toString())
                 .build();
 
         final ObjectMapper mapper = new ObjectMapper();
