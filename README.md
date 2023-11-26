@@ -2,14 +2,16 @@
 ## API RESTful de creación de usuarios.
 
 - La API REST expone 5 endpoints, los cuales aceptan y devuelven JSON
-  - 1
-  - 2
-  - 3
-  - 4
-  - 5
-
+  - http://localhost:8080/api/user/register
+  - http://localhost:8080/api/auth/signin 
+  - http://localhost:8080/api/user/retrieve/{id} (requiere token)
+  - http://localhost:8080/api/user/update/{id} (requiere token)
+  - http://localhost:8080/api/user/delete/{id} (requiere token)
+    
 De los 5 endpoints expuestos, hay 3 que estan segurizados y requieren de un token JWT para poder acceder a los recursos.
 Para la segurizacion de la API se utilizo SpringSecurity, el cual filtra los request entrantes y verifica la validez del token.
+
+
 
 - La API puede ser probada con POSTMAN o tambien via SWAGGER:
   
