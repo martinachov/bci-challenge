@@ -10,6 +10,9 @@ import com.martinachov.bci.challenge.application.port.input.RetrieveUserInputPor
 import com.martinachov.bci.challenge.application.port.input.SignUpUserInputPort;
 import com.martinachov.bci.challenge.application.port.input.UpdateUserInputPort;
 import com.martinachov.bci.challenge.infrastructure.security.AuthServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -39,6 +42,7 @@ public class UserRestController {
         this.authService = authService;
     }
 
+    @Operation(summary = "Register new User")
     @PostMapping(value="/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegistrationResponseDTO> registerUser(@RequestBody @Valid RegistrationRequestDTO request) throws BaseException {
 
@@ -58,6 +62,7 @@ public class UserRestController {
                 .build());
     }
 
+    @Operation(summary = "Retrieve user by Id" , security = { @SecurityRequirement(name = "bearer-key") })
     @GetMapping("/retrieve/{id}")
     public ResponseEntity<UserResponseDTO> getUserById(@PathVariable("id") UUID id) throws UserNotFoundException {
         User user = retrieveUserPort.getUserById(id);
@@ -71,6 +76,7 @@ public class UserRestController {
                 .build());
     }
 
+    @Operation(summary = "Update user data by Id" , security = { @SecurityRequirement(name = "bearer-key") })
     @PutMapping("/update/{id}")
     public ResponseEntity<UserResponseDTO> updateUser(@PathVariable("id") UUID id, @RequestBody UpdateUserRequestDTO userData) throws UserNotFoundException {
         UserRegistrationData newUserData = mapper.map(userData, UserRegistrationData.class);
@@ -85,6 +91,7 @@ public class UserRestController {
                 .build());
     }
 
+    @Operation(summary = "Delete user by Id" , security = { @SecurityRequirement(name = "bearer-key") })
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<DeleteUserResponseDTO> deleteUser(@PathVariable("id") UUID id) throws UserNotFoundException {
         deleteUserPort.deleteUser(id);

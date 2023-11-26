@@ -23,7 +23,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private static final String[] AUTH_WHITELIST = {
             "/api/user/register",
             "/api/auth/**",
-            "/h2-console/**"
+            "/h2-console/**",
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/documentation-ui/**",
+            "/documentation-resources/**",
+            "/configuration/**"
     };
 
     public WebSecurityConfiguration(UserDetailsService userDetailsService, JWTAuthFilter jwtAuthFilter, JWTAuthEntryPoint jwtAuthEntryPoint) {

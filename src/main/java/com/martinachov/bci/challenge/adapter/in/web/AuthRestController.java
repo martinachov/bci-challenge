@@ -6,6 +6,8 @@ import com.martinachov.bci.challenge.adapter.in.web.dto.TokenDTO;
 import com.martinachov.bci.challenge.application.exception.UserNotFoundException;
 import com.martinachov.bci.challenge.application.port.input.UpdateUserInputPort;
 import com.martinachov.bci.challenge.infrastructure.security.AuthServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +27,7 @@ public class AuthRestController {
         this.updateUserPort = updateUserPort;
     }
 
+    @Operation(summary = "Sign In user, generate token" )
     @PostMapping(value="/signin", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TokenDTO> loginUser(@RequestBody LoginCredentialsDTO body) throws UserNotFoundException {
         String token = authService.generateToken(body.getEmail(), body.getPassword());
