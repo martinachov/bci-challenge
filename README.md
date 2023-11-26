@@ -8,6 +8,9 @@
   - 4
   - 5
 
+De los 5 endpoints expuestos, hay 3 que estan segurizados y requieren de un token JWT para poder acceder a los recursos.
+Para la segurizacion de la API se utilizo SpringSecurity, el cual filtra los request entrantes y verifica la validez del token.
+
 - La API puede ser probada con POSTMAN o tambien via SWAGGER:
   
    - Crear nuevo Usuario:
