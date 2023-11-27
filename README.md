@@ -50,11 +50,15 @@ El funcionamiento de como actua SpringSecurity para proteger la API se describe 
 
 Si se crea el usuario correctamente, indicando correctamente el email y password (que respeta el formato indicado en la expresion regular) se devuelve el ID del usuario creado que es de tipo UUID, la fecha de creacion, ultimo login, si esta activo y el token para futuras llamadas a los endpoints protegidos de la API.
 
-Si el usuario ya existe, la API responde:
+- Si el usuario ya existe, la API responde:
 
-    ```json
-          response:
-              {"message": "User already exist !!"}
+  ```json
+
+        response:
+                {
+                    "message": "User already exist !!"
+                }
+                
               
 ***
 ### - Recuperar Usuario:
@@ -71,9 +75,9 @@ Si el usuario ya existe, la API responde:
 
      - En caso que el token sea invalido o este expirado, la API responde:
        
-     ```json
-
-           response:
-                {
-                    "message": "Full authentication is required to access this resource. Please check token validity and try again!!"
-                }
+         ```json
+    
+               response:
+                    {
+                        "message": "Full authentication is required to access this resource. Please check token validity and try again!!"
+                    }
