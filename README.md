@@ -68,10 +68,38 @@ Si se crea el usuario correctamente, indicando correctamente el email y password
   - El endpoint recibe el UUID del usuario que quiere recuperar y un token
 
      - En caso que existe el UUID y el token es valido, la API responde:
+   
+         ```json
+
+               response:
+                   {
+                      "user": {
+                          "name": "martin",
+                          "email": "martin@mail.com",
+                          "password": "$2a$10$jKaoyEnxmzzCL8V94ztqI.LJ46t1HGQSe/SMhZHHbPPLXVK0Gg9w.",
+                          "phones": [
+                              {
+                                  "number": 123456789,
+                                  "cityCode": 90,
+                                  "countryCode": "AR"
+                              }
+                          ]
+                      },
+                      "created": "2023-11-26T14:01:45.97",
+                      "lastLogin": "2023-11-27T02:42:46.339",
+                      "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJ0aW5AbWFpbC5jb20iLCJpYXQiOjE3MDEwNjM3NjYsImV4cCI6MTcwMTA2NDA2Nn0.imNBn1bhTAJRgEcT8GI4RHjT1nbBgnO-lxtDcZYuqpo",
+                      "isActive": true
+                  }
 
 
      - En caso que el UUID no exista y el token es valido, la API responde:
-   
+
+         ```json
+
+               response:
+                     {
+                          "message": "User with id: ff57cd15-d585-4bb5-adef-0c66136b0d57 not found!!"
+                      }
 
      - En caso que el token sea invalido o este expirado, la API responde:
        
@@ -81,3 +109,87 @@ Si se crea el usuario correctamente, indicando correctamente el email y password
                     {
                         "message": "Full authentication is required to access this resource. Please check token validity and try again!!"
                     }
+***
+### - Actualizar datos de Usuario:
+
+  - endpoint: http://localhost:8080/api/user/update/ff57cd15-d585-4bb5-adef-c66136b0d579
+ 
+  - El endpoint recibe el UUID del usuario que se quiere actualizar, los datos a actualizar y un token
+    
+  - En caso que existe el UUID y el token es valido, la API responde:
+
+      ```json
+              body:
+  
+                        {
+                            "name":"martin_modificado",
+                            "email":"martin@mail.com",
+                            "password":"AAAbbbb123",
+                            "phones": [
+                                {
+                                    "number":1234,
+                                    "cityCode":90,
+                                    "countryCode":"AR"
+                                },
+                                {
+                                    "number":5678,
+                                    "cityCode":90,
+                                    "countryCode":"AR"
+                                }
+                            ]
+                        }
+
+              response:
+      
+                        {
+                          "user": {
+                              "name": "martin_modificado",
+                              "email": "martin@mail.com",
+                              "password": "$2a$10$sLis9M8xVyXnF2nBAcWDAe.Rr1YqHp0Vojp6C1LwYNcpQf5BisHbu",
+                              "phones": [
+                                  {
+                                      "number": 1234,
+                                      "cityCode": 90,
+                                      "countryCode": "AR"
+                                  },
+                                  {
+                                      "number": 5678,
+                                      "cityCode": 90,
+                                      "countryCode": "AR"
+                                  }
+                              ]
+                          },
+                          "created": "2023-11-26T14:01:45.97",
+                          "lastLogin": "2023-11-27T02:48:43.042",
+                          "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJ0aW5AbWFpbC5jb20iLCJpYXQiOjE3MDEwNjQxMjMsImV4cCI6MTcwMTA2NDQyM30.aTbQzUFSVJf4RnTPbx7hCav4vP9kCgUhVJT_hmU7d3Y",
+                          "isActive": true
+                      }
+  
+***
+### - Eliminar  Usuario:
+
+  - endpoint: http://localhost:8080/api/user/delete/ff57cd15-d585-4bb5-adef-c66136b0d579
+ 
+  - El endpoint recibe el UUID del usuario que se quiere eliminar y un token
+    
+  - En caso que existe el UUID y el token es valido, la API responde:
+
+      ```json
+
+
+
+
+***
+### - SignIn
+
+        ```json
+
+            {
+                "message": "Full authentication is required to access this resource. Please check token validity and try again!!"
+            }
+
+
+            {
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJ0aW5AbWFpbC5jb20iLCJpYXQiOjE3MDEwNjQxMjMsImV4cCI6MTcwMTA2NDQyM30.aTbQzUFSVJf4RnTPbx7hCav4vP9kCgUhVJT_hmU7d3Y"
+}
+
