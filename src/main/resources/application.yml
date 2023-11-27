@@ -17,7 +17,7 @@ application:
   security:
     jwt:
       secret-key: 482B4D6251655468576D5A7134743677397A24432646294A404E635266556A58
-      expiration: 240000 # 1 minuto
+      expiration: 300000 # 5 minutos
 
   validation:
     regex:
