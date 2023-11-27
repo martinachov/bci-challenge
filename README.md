@@ -18,6 +18,7 @@ El funcionamiento de como actua SpringSecurity para proteger la API se describe 
 
 
 - La API puede ser probada con POSTMAN o tambien via SWAGGER (http://localhost:8080/swagger-ui/index.html)
+- En la carpeta resources se deja una Collection de Postman para probar los endpoints de la API.
 
 ***  
 ### - Crear nuevo Usuario:
