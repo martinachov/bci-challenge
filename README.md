@@ -175,21 +175,28 @@ Si se crea el usuario correctamente, indicando correctamente el email y password
   - En caso que existe el UUID y el token es valido, la API responde:
 
       ```json
-
-
+            {
+                "message": "User successfully deleted!"
+            }
 
 
 ***
 ### - SignIn
 
-        ```json
+  - endpoint: http://localhost:8080/api/auth/signin
 
+  - Este endpoint sirve para generar un nuevo token para un usuario existente.
+
+
+       ```json
+            body:
             {
-                "message": "Full authentication is required to access this resource. Please check token validity and try again!!"
+                "email":"martin@mail.com",
+                "password":"AAAbbbb123"
             }
 
-
+            response:
             {
-    "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJ0aW5AbWFpbC5jb20iLCJpYXQiOjE3MDEwNjQxMjMsImV4cCI6MTcwMTA2NDQyM30.aTbQzUFSVJf4RnTPbx7hCav4vP9kCgUhVJT_hmU7d3Y"
-}
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJ0aW5AbWFpbC5jb20iLCJpYXQiOjE3MDEwNjQxMjMsImV4cCI6MTcwMTA2NDQyM30.aTbQzUFSVJf4RnTPbx7hCav4vP9kCgUhVJT_hmU7d3Y"
+            }
 
