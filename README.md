@@ -18,7 +18,8 @@ El funcionamiento de como actua SpringSecurity para proteger la API se describe 
 
 
 - La API puede ser probada con POSTMAN o tambien via SWAGGER (http://localhost:8080/swagger-ui/index.html)
-  
+
+***  
 ### - Crear nuevo Usuario:
 
   - endpoint: http://localhost:8080/api/user/register
@@ -50,12 +51,11 @@ El funcionamiento de como actua SpringSecurity para proteger la API se describe 
 Si se crea el usuario correctamente, indicando correctamente el email y password (que respeta el formato indicado en la expresion regular) se devuelve el ID del usuario creado que es de tipo UUID, la fecha de creacion, ultimo login, si esta activo y el token para futuras llamadas a los endpoints protegidos de la API.
 
 Si el usuario ya existe, la API responde:
-
-
-```json
-        response:
-            {"message": "User already exist !!"}
-
+    ```json
+          response:
+              {"message": "User already exist !!"}
+              
+***
 ### - Recuperar Usuario:
 
   - endpoint: http://localhost:8080/api/user/retrieve/ff57cd15-d585-4bb5-adef-c66136b0d579
